@@ -2,6 +2,7 @@ import { app, Tray, Menu, BrowserWindow, screen, globalShortcut, shell, ipcMain 
 import { updateElectronApp } from 'update-electron-app';
 import Store from 'electron-store';
 import path from 'path';
+import { readFileSync } from 'fs';
 
 const schema = {
   show_whiteboard: {
@@ -41,10 +42,28 @@ const schema = {
   },
 };
 
+const DEFAULT_KEY_MAP = {
+  KEY_SHOW_HIDE_APP: "CmdOrCtrl+Shift+A",
+  KEY_SHOW_HIDE_TOOLBAR: "CmdOrCtrl+T",
+  KEY_SHOW_HIDE_WHITEBOARD: "CmdOrCtrl+W",
+  KEY_CLEAR_DESK: "CmdOrCtrl+K",
+  KEY_Q: "CmdOrCtrl+Q",
+};
+
 // app.getPath('userData') + '/config.json'
 const store = new Store({
   schema
 });
+
+const getKeyMap = () => {
+  const home = process.env.HOME || process.env.USERPROFILE;
+  const configPath = path.join(home, ".config", "drawpen", "keyconfig.json");
+  try {
+    return JSON.parse(readFileSync(configPath, "utf-8"));
+  } catch {
+    return DEFAULT_KEY_MAP;
+  }
+}
 
 console.log('Current store: ', store.store)
 
@@ -69,11 +88,12 @@ const iconSrc = {
 
 const trayIcon = iconSrc[process.platform] || iconSrc.DEFAULT
 
-const KEY_SHOW_HIDE_APP = 'CmdOrCtrl+Shift+A'
-const KEY_SHOW_HIDE_TOOLBAR = 'CmdOrCtrl+T'
-const KEY_SHOW_HIDE_WHITEBOARD = 'CmdOrCtrl+W'
-const KEY_CLEAR_DESK = 'CmdOrCtrl+K'
-const KEY_Q = 'CmdOrCtrl+Q'
+const { 
+  KEY_SHOW_HIDE_APP,
+  KEY_SHOW_HIDE_TOOLBAR,
+  KEY_SHOW_HIDE_WHITEBOARD,
+  KEY_CLEAR_DESK,KEY_Q
+} = getKeyMap();
 
 function updateContextMenu() {
   const contextMenu = Menu.buildFromTemplate([
