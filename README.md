@@ -42,6 +42,24 @@ You can download DrawPen for **free** from [releases](https://github.com/DmytroV
 | Clear Desk                              | <kbd>CMD</kbd>/<kbd>CTRL</kbd> + <kbd>K</kbd> | |
 | Reset to original                       | | Resets all app settings <br /> (chosen colors, toolbar position, etc.)  |
 
+#### Configure Key Bindings
+
+You can customize the keyboard shortcuts by creating a `keyconfig.json` file in your home configuration folder:
+
+**Path:**  
+`$HOME/.config/drawpen/keyconfig.json`
+
+**Example content:**
+```json
+{
+  "KEY_SHOW_HIDE_APP": "CmdOrCtrl+Shift+A",
+  "KEY_SHOW_HIDE_TOOLBAR": "CmdOrCtrl+T",
+  "KEY_SHOW_HIDE_WHITEBOARD": "CmdOrCtrl+W",
+  "KEY_CLEAR_DESK": "CmdOrCtrl+K",
+  "KEY_Q": "CmdOrCtrl+Q"
+}
+```
+
 ### Contributing
 
 Please read our [Contributing Guidelines](CONTRIBUTING.md) for more information.

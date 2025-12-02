@@ -22,7 +22,9 @@ export const colorList = [
 //   const offsetY = ((fontSize * lineHeightMultiplier) - fontSize) / 2;
 
 export const widthList = [
+  { pen_width: 4,  rainbow_pen_width: 3,  laser_width: [3,   6],  figure_size: 3,  icon_size: 14, name: 'small',  font_size: 18, font_y_offset_compensation: 5,   font_line_height_compensation: 3.5 },
   { pen_width: 8,  rainbow_pen_width: 4,  laser_width: [3,   8],  figure_size: 6,  icon_size: 15, name: 'light',  font_size: 28, font_y_offset_compensation: 5,   font_line_height_compensation: 3.5 },
   { pen_width: 12, rainbow_pen_width: 8,  laser_width: [4.5, 12], figure_size: 8,  icon_size: 17, name: 'medium', font_size: 42, font_y_offset_compensation: 7.5, font_line_height_compensation: 5.25 },
   { pen_width: 16, rainbow_pen_width: 12, laser_width: [6,   16], figure_size: 10, icon_size: 20, name: 'bold',   font_size: 56, font_y_offset_compensation: 10,  font_line_height_compensation: 7 },
 ]
+ 
